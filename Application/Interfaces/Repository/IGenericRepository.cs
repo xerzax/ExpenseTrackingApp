@@ -9,6 +9,12 @@ namespace Application.Interfaces.Repository
 {
     public interface IGenericRepository
     {
+        Task<IEnumerable<TEntity>> Get<TEntity>(Expression<Func<TEntity, bool>> filter = null,
+            Func<IQueryable<TEntity>,
+            IOrderedQueryable<TEntity>> orderBy = null,
+            string includeProperties = "",
+            int? topCount = null)
+            where TEntity : class;
         Task<IEnumerable<TProperty>> GetTProperty<TEntity, TProperty>(
         Expression<Func<TEntity, bool>> filter = null,
         Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
@@ -49,3 +55,5 @@ namespace Application.Interfaces.Repository
 
     }
 }
+
+#endregion

@@ -9,11 +9,11 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Repository
+namespace Infrastructure.Implementation.Repository
 {
-    public class GenericRepository: IGenericRepository
+    public class GenericRepository : IGenericRepository
     {
-        private readonly ApplicationDbContext dbContext;
+        private readonly ApplicationDbContext _dbContext;
 
         public GenericRepository(ApplicationDbContext dbContext)
         {
@@ -57,6 +57,7 @@ namespace Infrastructure.Repository
                 throw;
             }
         }
+        
         public async Task<IEnumerable<TProperty>> GetTProperty<TEntity, TProperty>(
         Expression<Func<TEntity, bool>> filter = null,
         Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
